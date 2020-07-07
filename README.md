@@ -30,3 +30,4 @@ Microsoft : 7 wrong predictions out of 20
 - Try a different LSTM architecture (for example 2 hidden layers)
 - Clean code
 - Find a way to figure out how sure the model is of its prediction
+- Integrate other data to train the model (for example a Google Trend search for the company using pytrends)
