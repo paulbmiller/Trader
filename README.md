@@ -18,9 +18,9 @@ Amazon RMSE : 82.2145559000393
 We see that the model can predict the next day's mean stock value pretty well for some stocks (i.e. low error), but what is more important to us is that we don't predict it to go up when it goes down.
 
 If we only take the binary result of up or down from this model, we get these results :
-Amazon : 8 wrong predictions out of 20
-Apple : 8 wrong predictions out of 20
-Microsoft : 7 wrong predictions out of 20
+Amazon : 9 wrong predictions out of 20
+Apple : 11 wrong predictions out of 20
+Microsoft : 15 wrong predictions out of 20
 
 ## Further work
 - Use the differenced dataframe to train the network, which may lead to a better result in the binary task of predicting "up" or "down" for the next day and would eliminate the need for smoothing windows

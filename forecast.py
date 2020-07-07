@@ -70,8 +70,10 @@ if __name__ == '__main__':
     input_size = 3
     n_preds = 1
     test_size = 20
+    hidden_layer = 200
     
-    model = LSTM(n_input=n_input, input_size=input_size)
+    model = LSTM(n_input=n_input, input_size=input_size,
+                 hidden_layer=hidden_layer)
     loss_fn = nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
@@ -156,7 +158,10 @@ if __name__ == '__main__':
     colors = ['blue', 'orange', 'green']
     
     for i in range(input_size):
-        plt.figure()
+        plt.figure('{}_{}in_{}ep_{}h'.format(stocks[i].lower(),
+                                             n_input,
+                                             epochs,
+                                             hidden_layer))
         title = '{} {}-day stock predictions'.format(stocks[i], n_preds)
         label = 'Predictions'
         df[stocks[i]].iloc[-2*test_size:].plot(figsize=(12, 6), color=colors[i])
@@ -181,12 +186,11 @@ if __name__ == '__main__':
     dfdiff = (dfdiff - dfdiff.shift(1)).dropna()
     dfdiff = (dfdiff>0).astype(int)
 
-    preds = pd.DataFrame(preds_unsc, index=test.index,
-                         columns=['Amazon', 'Apple', 'Microsoft'])
-    preds_diff = ((preds - df.iloc[len(train)-1:-1])>0).astype(int)
+    preds = pd.DataFrame(preds_unsc, index=test.index, columns=stocks)
+    preds_diff = ((preds - df.iloc[len(train)-1:-1].values)>0).astype(int)
     
     dfdiff = dfdiff - preds_diff
     for stock in stocks:
         print('{} : {} wrong predictions out of {}'.format(
-            stock, int(dfdiff[stock].sum()), test_size))
+            stock, int(dfdiff[stock].abs().sum()), test_size))
 
