@@ -25,10 +25,11 @@ Microsoft : 9 wrong predictions out of 20
 Even though the results seem okay when seen like this, these results don't have much value. For example, we can see that we always predict an increase for the Amazon stock.
 
 
-## How I am trying to improve the model
+## Current work
 I am trying to see if I can find a correlation between google searches for specific keywords and the value of a stock. For example, if the days after searches for the name of the company and the word "scandal" increase, the stock might go down since people might tend to sell.
+In reality, it is more complicated than this because these obvious searches reveal trends that are already taken into account by traders.
 
-I am also trying to use the differenced dataframe to train the network, which may lead to a better result in the binary task of predicting "up" or "down" for the next day and would eliminate the need for smoothing windows
+I am also trying to use the differenced dataframe to train the network, which may lead to a better result in the binary task of predicting "up" or "down" for the next day and would eliminate the need for smoothing windows.
 
 
 ## Further work
